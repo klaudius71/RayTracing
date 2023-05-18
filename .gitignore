@@ -24,9 +24,18 @@
 *.lai
 *.la
 *.a
-*.lib
+#*.lib
 
 # Executables
 *.exe
 *.out
 *.app
+
+# Other
+/bin
+/bin-int
+/.vs
+*.sln
+*.vcxproj
+*.filters
+*.user

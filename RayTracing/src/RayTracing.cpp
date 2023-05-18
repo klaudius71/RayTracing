@@ -7,113 +7,83 @@ RayTracing::RayTracing(const int width, const int height, const char* const icon
 
 void RayTracing::Start()
 {
-	//img1 = new Iceberg::Image();
-	//x_tex = new Iceberg::Texture("assets/textures/x.png");
-	//square_tex = new Iceberg::Texture("assets/textures/square.png");
-	//line_tex = new Iceberg::Texture("assets/textures/line.png");
-	//minimize_tex = new Iceberg::Texture("assets/textures/minimize.png");
-	//pixels = new uint32_t[img1->GetWidth() * img1->GetHeight()];
-	//
-	//font = ImGui::GetIO().Fonts->AddFontFromFileTTF("assets/fonts/Roboto-Medium.ttf", 24);
+	img1 = new Iceberg::Image();
+	x_tex = new Iceberg::Texture("assets/textures/x.png");
+	square_tex = new Iceberg::Texture("assets/textures/square.png");
+	line_tex = new Iceberg::Texture("assets/textures/line.png");
+	minimize_tex = new Iceberg::Texture("assets/textures/minimize.png");
+	pixels = new uint32_t[img1->GetWidth() * img1->GetHeight()];
+	
+	font = ImGui::GetIO().Fonts->AddFontFromFileTTF("assets/fonts/Roboto-Medium.ttf", 24);
 }
 
 void RayTracing::Update()
 {
-	//const Iceberg::Window* wind = GetWindow();
-	//
-	//ImGuiIO& io = ImGui::GetIO();
-	//
-	//ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2{ 0.0f, 10.0f });
-	//if (ImGui::BeginMainMenuBar())
-	//{
-	//	bool hovered = ImGui::IsWindowHovered();
-	//	bool maximized = wind->IsMaximized();
-	//
-	//	if(hovered)
-	//	{
-	//		if (ImGui::IsMouseDoubleClicked(ImGuiMouseButton_Left))
-	//		{
-	//			if (maximized)
-	//				glfwRestoreWindow(wind->GetGLFWWindow());
-	//			else
-	//				glfwMaximizeWindow(wind->GetGLFWWindow());
-	//		}
-	//		else if(!maximized && ImGui::IsMouseClicked(ImGuiMouseButton_Left, true))
-	//		{
-	//			dragging = true;
-	//		}
-	//	}
-	//
-	//	if (!ImGui::IsMouseDown(ImGuiMouseButton_Left) || wind->IsResizing())
-	//	{
-	//		dragging = false;
-	//	}
-	//	
-	//	if (dragging)
-	//	{
-	//		ImVec2 delta = ImGui::GetMouseDragDelta(ImGuiMouseButton_Left, 0.0f);
-	//		// I have no idea why, but clicking and dragging moves the window by exactly 7 on each coordinate
-	//		glfwSetWindowPos(wind->GetGLFWWindow(), prev_window_position_x + (int)delta.x - 7, prev_window_position_y + (int)delta.y - 7);
-	//	}
-	//	else
-	//	{
-	//		glfwGetWindowPos(wind->GetGLFWWindow(), &prev_window_position_x, &prev_window_position_y);
-	//	}
-	//
-	//	ImGui::PushFont(font);
-	//	ImGui::SetCursorPosY(-7.0f);
-	//	ImGui::Text("Iceberg");
-	//	ImGui::PopFont();
-	//
-	//	float offset = ImGui::GetWindowWidth() - (ImGui::GetWindowHeight() + 20.0f + 4.0f);
-	//	ImGui::SetCursorPosX(offset);
-	//	ImGui::SetCursorPosY(-3.0f);
-	//	ImGui::PushStyleColor(ImGuiCol_::ImGuiCol_Button, ImVec4{ 0.0f, 0.0f, 0.0f, 0.0f });
-	//	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2{ 20.0f, 10.0f });
-	//	if (ImGui::ImageButton("Exit", x_tex->GetDescriptorSet(), ImVec2{ImGui::GetWindowHeight() * 0.6f , ImGui::GetWindowHeight() * 0.6f }))
-	//		glfwSetWindowShouldClose(wind->GetGLFWWindow(), GLFW_TRUE);
-	//
-	//	ImGui::SetCursorPosX(offset - (ImGui::GetWindowHeight() + 20.0f + 4.0f));
-	//	ImGui::SetCursorPosY(-3.0f);
-	//	ImTextureID tex = wind->IsMaximized() ? minimize_tex->GetDescriptorSet() : square_tex->GetDescriptorSet();
-	//
-	//	if (ImGui::ImageButton("Maximize", tex, ImVec2{ ImGui::GetWindowHeight() * 0.6f, ImGui::GetWindowHeight() * 0.6f }))
-	//	{
-	//		if (wind->IsMaximized())
-	//			glfwRestoreWindow(wind->GetGLFWWindow());
-	//		else
-	//			glfwMaximizeWindow(wind->GetGLFWWindow());
-	//	}
-	//
-	//	ImGui::SetCursorPosX(offset - 2 * (ImGui::GetWindowHeight() + 20.0f + 4.0f));
-	//	ImGui::SetCursorPosY(-3.0f);
-	//	if (ImGui::ImageButton("Minimize", line_tex->GetDescriptorSet(), ImVec2{ ImGui::GetWindowHeight() * 0.6f, ImGui::GetWindowHeight() * 0.6f }))
-	//	{
-	//		glfwIconifyWindow(wind->GetGLFWWindow());
-	//	}
-	//
-	//	ImGui::PopStyleVar();
-	//	ImGui::PopStyleColor();
-	//
-	//	ImGui::EndMainMenuBar();
-	//}
-	//ImGui::PopStyleVar();
-	//
-	//ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });
-	//ImGui::Begin("Image Example");
-	//ImVec2 window_size = ImGui::GetContentRegionAvail();
-	//this->Resize((uint32_t)window_size.x, (uint32_t)window_size.y);
-	//this->RenderFrame();
-	//ImGui::Image(img1->GetImGuiTexture(), window_size);
-	//ImGui::End();
-	//ImGui::PopStyleVar();
-	//
-	//ImGui::Begin("Testing");
-	//ImGui::DragFloat3("Sphere Position", glm::value_ptr(spherePos), 0.01f);
-	//ImGui::DragFloat("Sphere Radius", &sphereRadius, 0.01f);
-	//ImGui::End();
-	//
-	//ImGui::ShowDemoWindow();
+	glfwSetWindowCaptionArea(App::GetWindow()->GetGLFWWindow(), 0, 0, App::GetWindow()->GetWindowWidth() - 175, 30);
+
+	const Iceberg::Window* wind = GetWindow();
+	
+	ImGuiIO& io = ImGui::GetIO();
+	
+	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2{ 0.0f, 10.0f });
+	if (ImGui::BeginMainMenuBar())
+	{
+		bool maximized = wind->IsMaximized();
+	
+		ImGui::PushFont(font);
+		ImGui::SetCursorPosY(-7.0f);
+		ImGui::Text("RayTracing");
+		ImGui::PopFont();
+	
+		float offset = ImGui::GetWindowWidth() - (ImGui::GetWindowHeight() + 20.0f + 4.0f);
+		ImGui::SetCursorPosX(offset);
+		ImGui::SetCursorPosY(-3.0f);
+		ImGui::PushStyleColor(ImGuiCol_::ImGuiCol_Button, ImVec4{ 0.0f, 0.0f, 0.0f, 0.0f });
+		ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2{ 20.0f, 10.0f });
+		if (ImGui::ImageButton("Exit", x_tex->GetDescriptorSet(), ImVec2{ImGui::GetWindowHeight() * 0.6f , ImGui::GetWindowHeight() * 0.6f }))
+			glfwSetWindowShouldClose(wind->GetGLFWWindow(), GLFW_TRUE);
+		
+		ImGui::SetCursorPosX(offset - (ImGui::GetWindowHeight() + 20.0f + 4.0f));
+		ImGui::SetCursorPosY(-3.0f);
+		ImTextureID tex = wind->IsMaximized() ? minimize_tex->GetDescriptorSet() : square_tex->GetDescriptorSet();
+		
+		if (ImGui::ImageButton("Maximize", tex, ImVec2{ ImGui::GetWindowHeight() * 0.6f, ImGui::GetWindowHeight() * 0.6f }))
+		{
+			if (wind->IsMaximized())
+				glfwRestoreWindow(wind->GetGLFWWindow());
+			else
+				glfwMaximizeWindow(wind->GetGLFWWindow());
+		}
+		
+		ImGui::SetCursorPosX(offset - 2 * (ImGui::GetWindowHeight() + 20.0f + 4.0f));
+		ImGui::SetCursorPosY(-3.0f);
+		if (ImGui::ImageButton("Minimize", line_tex->GetDescriptorSet(), ImVec2{ ImGui::GetWindowHeight() * 0.6f, ImGui::GetWindowHeight() * 0.6f }))
+		{
+			glfwIconifyWindow(wind->GetGLFWWindow());
+		}
+		
+		ImGui::PopStyleVar();
+		ImGui::PopStyleColor();
+	
+		ImGui::EndMainMenuBar();
+	}
+	ImGui::PopStyleVar();
+	
+	ImGui::PushStyleVar(ImGuiStyleVar_::ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });
+	ImGui::Begin("Image Example");
+	ImVec2 window_size = ImGui::GetContentRegionAvail();
+	this->Resize((uint32_t)window_size.x, (uint32_t)window_size.y);
+	this->RenderFrame();
+	ImGui::Image(img1->GetImGuiTexture(), window_size);
+	ImGui::End();
+	ImGui::PopStyleVar();
+	
+	ImGui::Begin("Testing");
+	ImGui::DragFloat3("Sphere Position", glm::value_ptr(spherePos), 0.01f);
+	ImGui::DragFloat("Sphere Radius", &sphereRadius, 0.01f);
+	ImGui::End();
+	
+	ImGui::ShowDemoWindow();
 }
 
 void RayTracing::End()
