@@ -25,12 +25,15 @@ private:
 	glm::vec4 PerPixel(glm::vec2 fragCoords);
 	void Resize(uint32_t width, uint32_t height);
 
-	glm::vec3 spherePos{};
+	std::chrono::steady_clock::time_point prevTime;
+	float dt;
+	std::vector<float> deltaTimes;
+	uint32_t deltaTimesIndex = 0;
+
+	std::vector<uint32_t> heights;
+	glm::vec3 spherePos{ 0.0f, 0.0f, 0.0f };
 	float sphereRadius = 0.5f;
 
-	bool dragging;
-	int prev_window_position_x;
-	int prev_window_position_y;
 	uint32_t* pixels;
 	ImFont* font;
 	Iceberg::Image* img1 = nullptr;

@@ -1,5 +1,4 @@
 #include "RayTracing.h"
-#include <exception>
 
 struct MemMarker
 {
@@ -11,7 +10,7 @@ struct MemMarker
 
 int main()
 {
-	RayTracing* sandbox = new RayTracing(1600, 900, nullptr);
+	RayTracing* sandbox = new RayTracing(1920, 1080, nullptr);
 	sandbox->Run();
 	delete sandbox;
 }
